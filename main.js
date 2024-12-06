@@ -4,20 +4,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Hämtar API-nyckeln från servern
     const apiKey = await getApiKey();
-    console.log('API Key:', apiKey);  // Kontrollera att API-nyckeln hämtades korrekt
 
     if (apiKey) {
         // Hämtar planetinformation från API:et med hjälp av den hämtade API-nyckeln
         const planetData = await fetchPlanetsInfo(apiKey);
-        console.log('API Response:', planetData); // Loggar hela svaret för att undersöka strukturen
 
         if (planetData && planetData.bodies) {  // Kollar om det finns planeter i API-svaret
-            console.log('Found bodies:', planetData.bodies);  // Loggar alla planeter som hämtades
 
             let currentPlanetName = window.location.pathname.split("/").pop().split(".")[0];
 
             // Hämtar planetens namn från URL, exempelvis från 'earth.html'
-            console.log('Planet from URL:', currentPlanetName);  // Loggar planetens namn från URL
 
             // Skapar en mappling för att översätta planetnamnen till svenska
             const planetNameMapping = {
@@ -33,13 +29,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             };
 
             const translatedPlanetName = planetNameMapping[currentPlanetName.toLowerCase()];
-            console.log('Translated Planet Name:', translatedPlanetName);  // Loggar det översatta planetnamnet
-
-            console.log('API planet names:', planetData.bodies.map(p => p.name));  // Loggar namnen på alla planeter i API-responsen
 
             // Letar efter planetens data i API-svaret baserat på det översatta namnet
             const planet = planetData.bodies.find(p => p.name === translatedPlanetName);
-            console.log('Found Planet:', planet);  // Loggar den hittade planeten
 
             if (planet) {
                 // Sätter planetens namn på sidan
@@ -69,8 +61,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById('search-form').addEventListener('submit', function(event) {
         event.preventDefault(); // Förhindrar att sidan laddas om
         const planet = document.getElementById('search-input').value.trim().toLowerCase();
-        console.log("Searched planet:", planet);  // Loggar den sökta planeten
-    
+
         // Definierar en lista med planetsidor
         const planets = {
             mercury: "mercury.html",
@@ -93,10 +84,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     
         // Kontrollerar om den sökta planeten finns i planets-listan
         if (planets[planet]) {
-            console.log("Redirecting to:", planets[planet]);  // Loggar URL:n som användaren omdirigeras till
             window.location.href = planets[planet]; // Navigerar till den valda planetsidan
         } else {
-            console.log("Planet not found, showing alert.");
             alert("Planeten finns inte. Kontrollera stavningen!"); // Visar ett meddelande om planeten inte finns
         }
     });
