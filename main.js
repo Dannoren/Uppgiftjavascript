@@ -2,25 +2,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     const planetName = document.querySelector(".planet-name");
     const planetInfoContainer = document.querySelector(".planet-info");
 
-    // Hämta API-nyckel
+    // Hämtar API-nyckeln från servern
     const apiKey = await getApiKey();
-    console.log('API Key:', apiKey);  // Kontrollera om nyckeln hämtas korrekt
+    console.log('API Key:', apiKey);  // Kontrollera att API-nyckeln hämtades korrekt
 
     if (apiKey) {
-        // Hämta planetspecifik information
+        // Hämtar planetinformation från API:et med hjälp av den hämtade API-nyckeln
         const planetData = await fetchPlanetsInfo(apiKey);
-        console.log('API Response:', planetData); // Logga hela svaret för att undersöka strukturen
+        console.log('API Response:', planetData); // Loggar hela svaret för att undersöka strukturen
 
-        if (planetData && planetData.bodies) {  // Kolla om "bodies" finns i svaret
-            console.log('Found bodies:', planetData.bodies);  // Logga bodies för att se datan för alla planeter
+        if (planetData && planetData.bodies) {  // Kollar om det finns planeter i API-svaret
+            console.log('Found bodies:', planetData.bodies);  // Loggar alla planeter som hämtades
 
             let currentPlanetName = window.location.pathname.split("/").pop().split(".")[0];
 
-            // Om vi är på index.html (eller startsidan), sätt planeten till 'earth' eller någon annan default planet.
-           
-            console.log('Planet from URL:', currentPlanetName);  // Logga den hämtade planetens namn från URL
+            // Hämtar planetens namn från URL, exempelvis från 'earth.html'
+            console.log('Planet from URL:', currentPlanetName);  // Loggar planetens namn från URL
 
-            // Här byter vi namn för att matcha med de svenska namnen från API
+            // Skapar en mappling för att översätta planetnamnen till svenska
             const planetNameMapping = {
                 'earth': 'Jorden',
                 'mercury': 'Merkurius',
@@ -34,19 +33,19 @@ document.addEventListener("DOMContentLoaded", async () => {
             };
 
             const translatedPlanetName = planetNameMapping[currentPlanetName.toLowerCase()];
-            console.log('Translated Planet Name:', translatedPlanetName);  // Kontrollera översättningen
+            console.log('Translated Planet Name:', translatedPlanetName);  // Loggar det översatta planetnamnet
 
-            console.log('API planet names:', planetData.bodies.map(p => p.name));
+            console.log('API planet names:', planetData.bodies.map(p => p.name));  // Loggar namnen på alla planeter i API-responsen
 
-            // Hitta planetens data i API-svaret med det översatta namnet
+            // Letar efter planetens data i API-svaret baserat på det översatta namnet
             const planet = planetData.bodies.find(p => p.name === translatedPlanetName);
-            console.log('Found Planet:', planet);  // Logga planeten för att se om den hittas i datan
+            console.log('Found Planet:', planet);  // Loggar den hittade planeten
 
             if (planet) {
-                // Visa planetens namn på sidan
+                // Sätter planetens namn på sidan
                 planetName.textContent = planet.name;
 
-                // Lägg till planetens information i planet-info-rutan
+                // Visar planetens detaljer i informationstexten
                 planetInfoContainer.innerHTML = `
                     <p><strong>Latin Name:</strong> ${planet.latinName}</p>
                     <p><strong>Rotation:</strong> ${planet.rotation} hours</p>
@@ -66,13 +65,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
-    // Lägg till sökfunktionalitet här
+    // Söker efter planet när formuläret skickas
     document.getElementById('search-form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Hindrar sidan från att ladda om
+        event.preventDefault(); // Förhindrar att sidan laddas om
         const planet = document.getElementById('search-input').value.trim().toLowerCase();
-        console.log("Searched planet:", planet);  // Logga den sökta planeten
+        console.log("Searched planet:", planet);  // Loggar den sökta planeten
     
-        // Skapa en lista över planetsidor
+        // Definierar en lista med planetsidor
         const planets = {
             mercury: "mercury.html",
             venus: "venus.html",
@@ -92,54 +91,54 @@ document.addEventListener("DOMContentLoaded", async () => {
             solen: "sun.html" // Lägg till alla planetsidor
         };
     
-        // Kontrollera om planeten finns
+        // Kontrollerar om den sökta planeten finns i planets-listan
         if (planets[planet]) {
-            console.log("Redirecting to:", planets[planet]);  // Logga URL:n som användaren omdirigeras till
-            window.location.href = planets[planet]; // Navigera till sidan
+            console.log("Redirecting to:", planets[planet]);  // Loggar URL:n som användaren omdirigeras till
+            window.location.href = planets[planet]; // Navigerar till den valda planetsidan
         } else {
             console.log("Planet not found, showing alert.");
-            alert("Planeten finns inte. Kontrollera stavningen!"); // Alert om planeten inte finns
+            alert("Planeten finns inte. Kontrollera stavningen!"); // Visar ett meddelande om planeten inte finns
         }
     });
 
-// Hämta API-nyckel
-async function getApiKey() {
-    try {
-        const response = await fetch(
-            'https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/keys', 
-            { method: 'POST' }
-        );
+    // Hämtar API-nyckel från servern
+    async function getApiKey() {
+        try {
+            const response = await fetch(
+                'https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/keys', 
+                { method: 'POST' }
+            );
 
-        if (!response.ok) {
-            throw new Error(`Error fetching API key: ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        return data.key;
-    } catch (error) {
-        console.error('Error fetching API key:', error.message);
-    }
-}
-
-// Hämta planetspecifik information
-async function fetchPlanetsInfo(apiKey) {
-    try {
-        const response = await fetch(
-            'https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies',
-            {
-                method: 'GET',
-                headers: { "x-zocom": apiKey }
+            if (!response.ok) {
+                throw new Error(`Error fetching API key: ${response.statusText}`);
             }
-        );
 
-        if (!response.ok) {
-            throw new Error(`Error fetching planet data: ${response.statusText}`);
+            const data = await response.json();
+            return data.key;
+        } catch (error) {
+            console.error('Error fetching API key:', error.message);
         }
-
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error fetching planet data:', error.message);
     }
-}
+
+    // Hämtar planetspecifik information från API
+    async function fetchPlanetsInfo(apiKey) {
+        try {
+            const response = await fetch(
+                'https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies',
+                {
+                    method: 'GET',
+                    headers: { "x-zocom": apiKey }
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error(`Error fetching planet data: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Error fetching planet data:', error.message);
+        }
+    }
 });

@@ -7,19 +7,22 @@
 }
 
 body {
+    transform: scale(1.3);
     display: flex;
     margin: 0;
     padding: 0;
     height: 100vh;
     background: radial-gradient(circle at center, 
-    rgb(51, 43, 57) 10%,  /* Mörkare lila-bakgrund nära mitten */
-        rgb(25, 11, 40) 30%,  /* Djupt mörklila för att ge känslan av djup */
-        rgb(15, 2, 23) 70%,   /* En djupröd-lila som går mot svart */
+    rgb(51, 43, 57) 10%, 
+        rgb(25, 11, 40) 30%,  
+        rgb(15, 2, 23) 70%,   
         rgb(3, 0, 4) 100%);
    align-items: center;
     overflow: hidden;
     font-family: Arial, sans-serif;
 }
+
+
 
 .planets-wrapper {
     position: relative;
@@ -51,11 +54,11 @@ body {
     background-color: #76777a;
     border-radius: 100%;
     box-shadow: inset -3px -3px #6a6b6e;
-    height: 44px; /* 10% större */
+    height: 44px;
     left: 350px;
     bottom: 90px;
     position: absolute;
-    width: 44px; /* 10% större */
+    width: 44px; 
     
 }
 
@@ -92,8 +95,8 @@ body {
         #b35e3d 70%  
     );
     border-radius: 100%;
-    height: 61px; /* 10% större */
-    width: 61px; /* 10% större */
+    height: 61px; 
+    width: 61px;
     position: absolute;
     left: 750px;
     top: 100px;
@@ -105,8 +108,8 @@ body {
     background-color: #496282;
     border-radius: 100%;
     box-shadow: inset -3px -3px #384c67;
-    height: 55px; /* 10% större */
-    width: 55px; /* 10% större */
+    height: 55px; 
+    width: 55px; 
     left: 400px;
     position: absolute;
     top: 270px;
@@ -144,11 +147,11 @@ body {
     background-color: #C25447;
     border-radius: 100%;
     box-shadow: inset -3px -3px #8c372e;
-    height: 46px; /* 10% större */
+    height: 46px; 
     left: 550px;
     position: absolute;
     top: -160px;
-    width: 46px; /* 10% större */
+    width: 46px; 
     
 }
 
@@ -156,11 +159,11 @@ body {
     background-color: #E89150;
     border-radius: 100%;
     box-shadow: 0px 0px 0px;
-    height: 88px; /* 10% större */
+    height: 88px; 
     left: 320px;
     position: absolute;
     top: -200px;
-    width: 88px; /* 10% större */
+    width: 88px;
     background: linear-gradient(
         #E89150 5px,
         #FFB179 10px,
@@ -176,8 +179,8 @@ body {
     background-color: #D1AA5E; 
     border-radius: 50%;
     box-shadow: inset -3px -3px rgb(183, 141, 90); 
-    height: 72px; /* 10% större */
-    width: 72px; /* 10% större */
+    height: 72px;
+    width: 72px; 
     position: absolute;
     left: 800px;
     top: -150px;
@@ -193,13 +196,13 @@ body {
     border-left: 10px solid #A3834B;
     border-right: 0;
     border-top: 0;
-    height: 60px; /* 10% större */
-    width: 60px; /* 10% större */
+    height: 60px; 
+    width: 60px;
     position: absolute;
     left: -5px;
     top: -3px;
     transform: rotate(-45deg) skew(65deg);
-    z-index: 1; /* Ligger framför planeten */
+    z-index: 1;
 }
 
 .saturn::before {
@@ -210,13 +213,13 @@ body {
     border-right: 10px solid #A3834B;
     border-left: 0;
     border-bottom: 0;
-    height: 60px; /* 10% större */
-    width: 60px; /* 10% större */
+    height: 60px; 
+    width: 60px; 
     position: absolute;
     left: -5px;
     top: -3px;
     transform: rotate(-45deg) skew(65deg);
-    z-index: -1; /* Ligger bakom planeten */
+    z-index: -1;
 }
 
 
@@ -224,11 +227,11 @@ body {
     background-color: #9DB1BF;
     border-radius: 100%;
     box-shadow: inset -3px -3px rgba(111, 130, 159, 1);
-    height: 74px; /* 10% större */
+    height: 74px;
     left: 650px;
     position: absolute;
     top: 300px;
-    width: 74px; /* 10% större */
+    width: 74px; 
   
 }
 
@@ -236,19 +239,19 @@ body {
     background-color: #5870A8;
     border-radius: 100%;
     box-shadow: inset -3px -3px rgba(66, 88, 138, 1);
-    height: 66px; /* 10% större */
+    height: 66px;
     left: 180px;
     position: absolute;
     top: 150px;
-    width: 66px; /* 10% större */
+    width: 66px; 
    
     
 }
 
 .planet::before {
-    content: attr(data-name); /* Hämtar planetens namn */
+    content: attr(data-name);
     position: absolute;
-    bottom: calc(100% + 5px); /* Placerar texten precis ovanför planeten */
+    bottom: calc(100% + 5px); 
     left: 50%;
     transform: translateX(-50%);
     color: white;
@@ -261,7 +264,7 @@ body {
 
 .planet-name   {
     position: absolute;
-    bottom: calc(100% + 10px); /* Placera texten ovanför planeten */
+    bottom: calc(100% + 10px); 
     left: 50%;
     transform: translateX(-50%);
     color: white;
@@ -280,10 +283,10 @@ body {
     margin: auto;
     padding: 30px;
     border-radius: 10px;
-    width: 80%;               /* Anpassa bredden till fönstret */
-    max-width: 600px;         /* Maxbredd så att rutan inte blir för bred */
-    max-height: 90vh;         /* Begränsa höjden till 80% av fönstrets höjd */
-    overflow-y: auto;         /* Gör rutan rullningsbar om texten är för lång */
+    width: 80%;            
+    max-width: 600px;         
+    max-height: 90vh;         
+    overflow-y: auto;         
     text-align: left;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
@@ -295,9 +298,9 @@ body {
 
 
 .planet:hover {
-    box-shadow: 0 0 15px rgba(160, 156, 76, 0.5); /* Lägg till en ljus skugga */
-    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease; /* Lägg till filter i övergången */
-    filter: brightness(1.2); /* Öka ljusstyrkan för en vitare effekt */
+    box-shadow: 0 0 15px rgba(160, 156, 76, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease; 
+    filter: brightness(1.2);
 }
 
 .saturn:hover {
@@ -310,9 +313,12 @@ body {
 
 
 .search-box {
+    position: absolute;
+    top: 120px;
+    right: 220px;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    transform: scale(0.8);
 }
 
 #search-input {
@@ -322,12 +328,13 @@ body {
     border-radius: 5px 0 0 5px;
     outline: none;
     width: 200px;
+    background-color: #f2f2f2; 
 }
 
 button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #4CAF50;
+    background-color: #6a4c9c; 
     color: white;
     border: none;
     border-radius: 0 5px 5px 0;
@@ -335,5 +342,25 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #7b5a9c; 
+}
+
+.main-title {
+    position: absolute;
+    top: 100px;
+    left: 250px;
+    font-family: "Shadows Into Light";
+    font-size: 80px;
+    color: #f1c40f; 
+    font-weight: bold;
+    margin: 0;
+}
+
+.sub-title {
+    position: absolute;
+    top: 200px; 
+    left: 250px;
+    font-family: "Shadows Into Light";
+    font-size: 60px;
+    color: #9b59b6; 
 }
