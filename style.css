@@ -1,0 +1,339 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: radial-gradient(circle at center, 
+    rgb(51, 43, 57) 10%,  /* Mörkare lila-bakgrund nära mitten */
+        rgb(25, 11, 40) 30%,  /* Djupt mörklila för att ge känslan av djup */
+        rgb(15, 2, 23) 70%,   /* En djupröd-lila som går mot svart */
+        rgb(3, 0, 4) 100%);
+   align-items: center;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+.planets-wrapper {
+    position: relative;
+    bottom: 0;
+    height: 125px;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 950px; 
+    
+}
+.planet {
+    position: relative;
+    text-align: center;
+}
+.sun {
+    background-color: #F2BC46;
+    border-radius: 100%;
+    height: 150px;
+    opacity: 0.8;
+    position:absolute;
+    width: 150px;
+    left: 450px;
+}
+
+.mercury {
+    background-color: #76777a;
+    border-radius: 100%;
+    box-shadow: inset -3px -3px #6a6b6e;
+    height: 44px; /* 10% större */
+    left: 350px;
+    bottom: 90px;
+    position: absolute;
+    width: 44px; /* 10% större */
+    
+}
+
+.mercury::before {
+    background-color:#636468;
+    border-radius: 100%;
+    content: '';
+    height: 7px;
+    left: 4px;
+    position: absolute;
+    top: 23px;
+    width: 7px;
+    bottom: calc(100% + 5px)
+}
+
+.mercury::after {
+    background-color:#636468;
+    border-radius: 100%;
+    content: '';
+    height: 5px;
+    left: 25px;
+    position: absolute;
+    top: 7px;
+    width: 5px;
+}
+
+.venus {
+    background: linear-gradient(
+        180deg,
+        #e89a78 5%,  
+        #b25f3d 15%,  
+        #d1734b 25%,  
+        #f1b190 50%,  
+        #b35e3d 70%  
+    );
+    border-radius: 100%;
+    height: 61px; /* 10% större */
+    width: 61px; /* 10% större */
+    position: absolute;
+    left: 750px;
+    top: 100px;
+    
+    transform: rotate(30deg);
+}
+
+.earth {
+    background-color: #496282;
+    border-radius: 100%;
+    box-shadow: inset -3px -3px #384c67;
+    height: 55px; /* 10% större */
+    width: 55px; /* 10% större */
+    left: 400px;
+    position: absolute;
+    top: 270px;
+    
+}
+
+.earth::after {
+    background-color: #5E8249;
+    border-radius: 100% 70% 100% 70%;
+    content: '';
+    height: 20px;
+    left: 15px;
+    position: absolute;
+    top: -2px;
+    width: 15px;
+    transform: rotate(60deg);
+}
+
+.earth::before {
+    background-color: #5E8249;
+    border-radius: 100% 70% 100% 70%;
+    content: '';
+    height: 20px;
+    left: 15px;
+    position: absolute;
+    top: 27px;
+    width: 35px;
+    transform: rotate(-28deg);
+    bottom: calc(100% + 5px)
+}
+
+
+
+.mars {
+    background-color: #C25447;
+    border-radius: 100%;
+    box-shadow: inset -3px -3px #8c372e;
+    height: 46px; /* 10% större */
+    left: 550px;
+    position: absolute;
+    top: -160px;
+    width: 46px; /* 10% större */
+    
+}
+
+.jupiter {
+    background-color: #E89150;
+    border-radius: 100%;
+    box-shadow: 0px 0px 0px;
+    height: 88px; /* 10% större */
+    left: 320px;
+    position: absolute;
+    top: -200px;
+    width: 88px; /* 10% större */
+    background: linear-gradient(
+        #E89150 5px,
+        #FFB179 10px,
+        #D16F1B 30px,
+        #E89150 50px,
+        #D16F1B 55px,
+        #E89150 70px,
+        #FFB179 75px
+    );
+}
+
+.saturn {
+    background-color: #D1AA5E; 
+    border-radius: 50%;
+    box-shadow: inset -3px -3px rgb(183, 141, 90); 
+    height: 72px; /* 10% större */
+    width: 72px; /* 10% större */
+    position: absolute;
+    left: 800px;
+    top: -150px;
+    
+    
+}
+
+.saturn::after {
+    content: '';
+    background-color: transparent;
+    border-radius: 50%;
+    border-bottom: 10px solid #A3834B;
+    border-left: 10px solid #A3834B;
+    border-right: 0;
+    border-top: 0;
+    height: 60px; /* 10% större */
+    width: 60px; /* 10% större */
+    position: absolute;
+    left: -5px;
+    top: -3px;
+    transform: rotate(-45deg) skew(65deg);
+    z-index: 1; /* Ligger framför planeten */
+}
+
+.saturn::before {
+    content: '';
+    background-color: transparent;
+    border-radius: 50%;
+    border-top: 10px solid #A3834B;
+    border-right: 10px solid #A3834B;
+    border-left: 0;
+    border-bottom: 0;
+    height: 60px; /* 10% större */
+    width: 60px; /* 10% större */
+    position: absolute;
+    left: -5px;
+    top: -3px;
+    transform: rotate(-45deg) skew(65deg);
+    z-index: -1; /* Ligger bakom planeten */
+}
+
+
+.uranus {
+    background-color: #9DB1BF;
+    border-radius: 100%;
+    box-shadow: inset -3px -3px rgba(111, 130, 159, 1);
+    height: 74px; /* 10% större */
+    left: 650px;
+    position: absolute;
+    top: 300px;
+    width: 74px; /* 10% större */
+  
+}
+
+.neptune {
+    background-color: #5870A8;
+    border-radius: 100%;
+    box-shadow: inset -3px -3px rgba(66, 88, 138, 1);
+    height: 66px; /* 10% större */
+    left: 180px;
+    position: absolute;
+    top: 150px;
+    width: 66px; /* 10% större */
+   
+    
+}
+
+.planet::before {
+    content: attr(data-name); /* Hämtar planetens namn */
+    position: absolute;
+    bottom: calc(100% + 5px); /* Placerar texten precis ovanför planeten */
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-family: "Shadows Into Light";
+    font-size: 20px;
+    font-weight: bold;
+    
+    
+} 
+
+.planet-name   {
+    position: absolute;
+    bottom: calc(100% + 10px); /* Placera texten ovanför planeten */
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-family: "Shadows Into Light";
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    
+}
+
+
+/* Stil för planet-info */
+.planet-info {
+    background-color: #800080;
+    color: white;
+    margin: auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;               /* Anpassa bredden till fönstret */
+    max-width: 600px;         /* Maxbredd så att rutan inte blir för bred */
+    max-height: 90vh;         /* Begränsa höjden till 80% av fönstrets höjd */
+    overflow-y: auto;         /* Gör rutan rullningsbar om texten är för lång */
+    text-align: left;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    font-size: 18px;
+    line-height: 1.6;
+
+    
+}
+
+
+.planet:hover {
+    box-shadow: 0 0 15px rgba(160, 156, 76, 0.5); /* Lägg till en ljus skugga */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease; /* Lägg till filter i övergången */
+    filter: brightness(1.2); /* Öka ljusstyrkan för en vitare effekt */
+}
+
+.saturn:hover {
+    box-shadow: 0 0 15px #A3834B;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease; 
+    z-index: 1;
+    filter: brightness(1.2);
+   
+}
+
+
+.search-box {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#search-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    width: 200px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}

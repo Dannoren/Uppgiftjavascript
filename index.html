@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solsystem</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <form id="search-form" class="search-box">
+        <input type="text" id="search-input" placeholder="Sök efter en planet..." />
+        <button type="submit">Sök</button>
+        
+    </form>
+   
+    
+
+    <section class="universe-wrapper">
+        <header class="stars-wrapper">
+            <!-- Stjärnorna! -->
+        </header>
+
+
+        <article class="planets-wrapper">
+
+            <div class="planet-info" style="display: none;"></div>
+
+        <a href="sun.html">
+            <section class="planet sun" data-name="Sun"></section>
+            </a>
+
+        <a href="mercury.html">
+            <section class="planet mercury">
+                <span class="planet-name">Mercury</span>
+            </section>
+            </a>
+
+        <a href="venus.html">
+            <section class="planet venus" data-name="Venus"></section>
+            </a>
+
+
+        <a href="earth.html" class="planet-link">
+            <section class="planet earth">
+                    <span class="planet-name">Earth</span>
+                </section>
+        </a>
+            
+
+        <a href="mars.html">
+            <section class="planet mars" data-name="Mars"></section>
+        </a>
+
+        <a href="jupiter.html">
+            <section class="planet jupiter" data-name="Jupiter"></section>
+        </a>
+
+        <a href="saturn.html">
+            <section class="saturn">
+                 <span class="planet-name">Saturn</span>
+                 </section>
+        </a>
+
+        <a href="uranus.html">
+        <section class="planet uranus" data-name="Uranus"></section>
+    </a>
+
+        <a href="neptune.html">
+         <section class="planet neptune" data-name="Neptune"></section>
+        </a>
+            
+        </article>
+    </section>
+   
+
+    <script src="main.js"></script>
+</body>
+</html>
